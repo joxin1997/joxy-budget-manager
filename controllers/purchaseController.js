@@ -50,7 +50,32 @@ let purchaseController = {
         } catch (error) {
             console.log("error in catch",error);
         }
-    }
+    },
+    async listByCategory(req, res, next) {
+        try {
+            let data = await purchaseModel.purchase.find({user_id: req.user_id, category: req.query.category});
+            if(data && data.length){
+                res.json({
+                    status: 200,
+                    info: 'Data successfully fetched',
+                    data: data
+                })
+            }else{
+                res.json({
+                    info: 'no data found',
+                    status: 400,
+                    data: []
+                })
+            }
+        } catch (error) {
+            console.log("error in catch",error);
+            res.json({
+                info: 'error while fetching data',
+                status: 500,
+                data: []
+            })
+        }
+    },
 }
 
 module.exports = purchaseController;

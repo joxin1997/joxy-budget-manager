@@ -1,5 +1,6 @@
 const API_PREFIX = '/api';
 let router = require('express').Router();
+
 let userRouter = require('./userRoutes');
 let purchaseRouter = require('./purchaseRoutes');
 
