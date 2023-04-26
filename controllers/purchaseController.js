@@ -4,6 +4,7 @@ let purchaseController = {
    async listPurchase(req, res, next) {
         try {
             let data = await purchaseModel.purchase.find({user_id: req.user_id});
+            console.log('data from purchase db',data);
             if(data && data.length){
                 res.json({
                     status: 200,
@@ -33,7 +34,7 @@ let purchaseController = {
                 category: req.body.category ? req.body.category : '',
                 cost: req.body.cost,
                 date: req.body.date ? req.body.date : new Date() ,
-                user_id: req.body.user_id
+                user_id: req.user_id
             });
             newPurchase.save().then((data) => {
                 res.json({

@@ -12,7 +12,7 @@ module.exports.verifyToken = (req, res, next) => {
             })
         } else {
             console.log("data   :", data.data);
-            req.body.user_id = data.data.user_id;
+            req.user_id = data.data.user_id;
             next();
         }
     });
